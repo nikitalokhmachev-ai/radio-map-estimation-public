@@ -1,0 +1,6 @@
+torch @ https://download.pytorch.org/whl/cu118/torch-2.0.0%2Bcu118-cp39-cp39-linux_x86_64.whl
+torchvision @ https://download.pytorch.org/whl/cu118/torchvision-0.15.1%2Bcu118-cp39-cp39-linux_x86_64.whl
+wandb==0.14.2
+joblib==1.2.0
+plotly
+kaleido
