@@ -9,6 +9,11 @@ Autoencoders and Skip Connection Learning paper.
 - <b>models</b> contains all the models mentioned in the paper. The <b>autoencoder.py</b> file contains an abstract autoencoder class implementation. The classes in <b>autoencoders.py</b> inherit the hyperparameters and methods of the autoencoder class to define all the architectures of the paper. The rest of the files correspond to specific autoencoder arhitectures and contain implementations of encoders and decoders for each of them.
 - <b>scalers</b> has all the pretrained scalers used in the paper. They are needed to reproduce the experiments.
 - <b>notebooks</b> contains all the notebooks required to reproduce the results of the paper.
+- <b>dataset</b> contains all the files needed to generate the dataset.
+
+## Data Format
+
+WIP
 
 ## Reproducibility
 
@@ -20,6 +25,10 @@ In order to reproduce the paper results, follow the following procedure:
 4. In order to visualize results, run the <b>Visualize Results.ipynb</b> notebook.
 
 The paths in every notebook have to be changed according to your file structure.
+
+## References
+
+The code to generate the dataset as well as the dataset itself have been taken from [deep-autoencoders-cartography](https://github.com/fachu000/deep-autoencoders-cartography).
 
 ## Warining
 
