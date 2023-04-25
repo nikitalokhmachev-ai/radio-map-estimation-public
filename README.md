@@ -11,10 +11,6 @@ Autoencoders and Skip Connection Learning paper.
 - <b>notebooks</b> contains all the notebooks required to reproduce the results of the paper.
 - <b>dataset</b> contains all the files needed to generate the dataset.
 
-## Data Format
-
-WIP
-
 ## Reproducibility
 
 In order to reproduce the paper results, follow the following procedure:
