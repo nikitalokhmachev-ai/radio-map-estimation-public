@@ -90,9 +90,9 @@ class Decoder(nn.Module):
         self.conv2d_transpose_8 = nn.ConvTranspose2d(n_dim+2, n_dim, kernel_size=(3,3), stride=1, padding=1)
         self.conv2d_transpose_9 = nn.ConvTranspose2d(n_dim+2, dec_out, kernel_size=(3,3), stride=1, padding=1)
 
-        self.up_sampling2d = nn.Upsample(scale_factor=2)
-        self.up_sampling2d_1 = nn.Upsample(scale_factor=2)
-        self.up_sampling2d_2 = nn.Upsample(scale_factor=2)
+        self.up_sampling2d = nn.Upsample(scale_factor=2, mode='bilinear')
+        self.up_sampling2d_1 = nn.Upsample(scale_factor=2, mode='bilinear')
+        self.up_sampling2d_2 = nn.Upsample(scale_factor=2, mode='bilinear')
 
         self.leaky_relu = torch.nn.LeakyReLU(negative_slope=leaky_relu_alpha)
         self.bases = torch.tensor([[1]], dtype=torch.float32).to(device)
