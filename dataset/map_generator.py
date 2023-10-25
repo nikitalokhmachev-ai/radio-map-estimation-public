@@ -7,7 +7,6 @@ from abc import abstractmethod
 from communications import dbm_to_natural, natural_to_db, db_to_natural
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.stats as stats
 
 
 class MapGenerator:

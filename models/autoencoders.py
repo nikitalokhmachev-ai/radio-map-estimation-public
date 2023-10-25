@@ -16,14 +16,13 @@ from .dual_map_mask import Encoder as DualMapMaskEncoder, Decoder as DualMapMask
 from .dual_input import Encoder as DualInputEncoder, Decoder as DualInputDecoder
 
 import torch
-import numpy as np
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
 # Baseline Autoencoder
 
 class BaselineAutoencoder(Autoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = BaselineEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -33,7 +32,7 @@ class BaselineAutoencoder(Autoencoder):
 # Skip Connection Autoencoders
 
 class SkipAutoencoder(Autoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = SkipEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -46,7 +45,7 @@ class SkipAutoencoder(Autoencoder):
     
 
 class SkipResidualAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = SkipResidualEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -54,7 +53,7 @@ class SkipResidualAutoencoder(SkipAutoencoder):
 
 
 class SkipMaskAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = SkipMaskEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -67,7 +66,7 @@ class SkipMaskAutoencoder(SkipAutoencoder):
 
 
 class SkipMaskMapAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = SkipMaskMapEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -80,7 +79,7 @@ class SkipMaskMapAutoencoder(SkipAutoencoder):
 
 
 class SkipMapAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = SkipMapEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -93,7 +92,7 @@ class SkipMapAutoencoder(SkipAutoencoder):
     
 
 class SkipMapMaskAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = SkipMapMaskEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -106,7 +105,7 @@ class SkipMapMaskAutoencoder(SkipAutoencoder):
 
 
 class SkipInputAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = SkipInputEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -121,7 +120,7 @@ class SkipInputAutoencoder(SkipAutoencoder):
 # Dual Path Autoencoders
 
 class DualMaskAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = DualMaskEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -129,7 +128,7 @@ class DualMaskAutoencoder(SkipAutoencoder):
 
 
 class DualMaskMapAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = DualMaskMapEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -137,7 +136,7 @@ class DualMaskMapAutoencoder(SkipAutoencoder):
 
 
 class DualMapAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = DualMapEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -145,7 +144,7 @@ class DualMapAutoencoder(SkipAutoencoder):
 
 
 class DualMapMaskAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = DualMapMaskEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)
@@ -153,7 +152,7 @@ class DualMapMaskAutoencoder(SkipAutoencoder):
     
 
 class DualInputAutoencoder(SkipAutoencoder):
-    def __init__(self, enc_in=2, enc_out=64, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
+    def __init__(self, enc_in=2, enc_out=4, dec_out=1, n_dim=27, leaky_relu_alpha=0.3):
         super().__init__()
 
         self.encoder = DualInputEncoder(enc_in, enc_out, n_dim, leaky_relu_alpha=leaky_relu_alpha)

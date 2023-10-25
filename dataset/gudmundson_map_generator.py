@@ -5,12 +5,9 @@
 # We also made changes at lines 77-78, 90, 95, and 175-177 to ensure the code ran without errors.
 # We have noted these changes in the comments immediately above those lines. 
 
-import tensorflow as tf
 import numpy as np
 from numpy import linalg as npla
-import matplotlib.pyplot as plt
 from scipy.spatial import distance
-# import sk_dsp_comm.sigsys as ss
 from scipy.stats import multivariate_normal
 from map_generator import MapGenerator
 from communications import dbm_to_natural, db_to_natural, natural_to_db

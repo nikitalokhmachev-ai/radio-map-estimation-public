@@ -8,6 +8,7 @@ from communications import dbm_to_natural, natural_to_dbm, dbm_to_db, db_to_natu
 import pandas as pd
 import numpy as np
 import cv2
+import os
 
 building_threshold = -200  # Threshold in dBm to determine building locations
 
@@ -22,6 +23,7 @@ class InsiteMapGenerator(MapGenerator):
             filter_map=True,
             filter_size=3,
             inter_grid_points_dist_factor=1,  # set to an integer greater than 1
+            input_dir='remcom_maps',
             *args,
             **kwargs):
 
@@ -32,6 +34,7 @@ class InsiteMapGenerator(MapGenerator):
         self.filter_map = filter_map
         self.filter_size = filter_size
         self.inter_grid_points_dist_factor = inter_grid_points_dist_factor
+        self.input_dir = input_dir
 
     def generate_power_map_per_freq(self, num_bases):
 
@@ -40,11 +43,11 @@ class InsiteMapGenerator(MapGenerator):
         if self.l_file_num[0] == 50 and self.l_file_num[-1] == 51 and self.num_tx_per_channel == 2:
             # reconstructing a Wireless Insite map taken with a higher resolution (used in the conference paper)
             rx_power_tx1 = np.array(
-                pd.read_csv("datasets/remcom_maps/power_tx50.txt",
+                pd.read_csv(os.path.join(self.input_dir, "power_tx50.txt"),
                             delim_whitespace=True,
                             skipinitialspace=True))
             rx_power_tx2 = np.array(
-                pd.read_csv("datasets/remcom_maps/power_tx51.txt",
+                pd.read_csv(os.path.join(self.input_dir, "power_tx51.txt"),
                             delim_whitespace=True,
                             skipinitialspace=True))
             rx_power_tx1_dBW = dbm_to_db(np.reshape(rx_power_tx1,
@@ -75,8 +78,7 @@ class InsiteMapGenerator(MapGenerator):
                     file_name = 'power_tx%s.p2m' % files_ind[ind_tx]
                     large_map_tx = np.array(
                         pd.read_csv(
-                            'datasets/remcom_maps/'
-                            + file_name,
+                            os.path.join(self.input_dir, file_name),
                             delim_whitespace=True,
                             skiprows=[0],
                             usecols=['Power(dBm)']))

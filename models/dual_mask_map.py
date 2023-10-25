@@ -1,11 +1,5 @@
 import torch
-import torchvision
-import torchvision.transforms as transforms
-import torch.nn.functional as F
 from torch import nn
-import numpy as np
-from torch.utils.data import Dataset
-from PIL import Image
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 

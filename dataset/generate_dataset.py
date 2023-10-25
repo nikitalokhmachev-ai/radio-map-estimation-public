@@ -18,6 +18,8 @@ def get_parser():
         This is not necessarily the same as the train or test batch size, which can be set during the loading of the data.', type=int, default=512)
     parser.add_argument('--test_split', dest='test_split', help='Percent of maps to use for testing.', type=float, default=0.1)
     parser.add_argument('--num_cpus', dest='num_cpus', help='Number of CPUs to process maps with.', type=int, default=16)
+    parser.add_argument('--input_dir', dest='input_dir', help='Directory where remcom_maps are saved if --building argument is used. If --no-building, this is ignored.', type=str, default='remcom_maps')
+    parser.add_argument('--output_dir', dest='output_dir', help='Directory where generated maps will be saved.', type=str, default='generated_maps')
     return parser
 
 class DatasetGenerator():
@@ -28,12 +30,16 @@ class DatasetGenerator():
                 buildings=True, 
                 batch_size=512, 
                 test_split=0.1, 
-                num_cpus=16):
+                num_cpus=16,
+                input_dir='remcom_maps',
+                output_dir='generated_maps'):
         self.num_maps = num_maps
         self.buildings = buildings
         self.batch_size = batch_size
         self.test_split = test_split
         self.num_cpus = num_cpus
+        self.input_dir = input_dir
+        self.output_dir = output_dir
         self.time = time.strftime("%m_%d__%Hh_%Mm", time.gmtime())
         # generator and sampler are set in the "generate_train_maps" and "generate_test_maps" methods
         self.generator = None
@@ -94,7 +100,7 @@ class DatasetGenerator():
             end_time = time.time()
             elapsed_time = end_time - start_time
             print(f'Elapsed time for {self.num_cpus} CPUs to generate and sample {self.batch_size} maps is',
-                  time.strftime("%d:%H:%M:%S", time.gmtime(elapsed_time)))
+                  time.strftime("%H:%M:%S", time.gmtime(elapsed_time)))
 
             sampled_maps = np.array([data_point['sampled_map'] for data_point in data])
             target_maps = np.array([data_point['target_map'] for data_point in data])
@@ -114,7 +120,7 @@ class DatasetGenerator():
             end_time = time.time()
             elapsed_time = end_time - start_time
             print(f'Elapsed time for {self.num_cpus} CPUs to generate {remainder} maps is',
-                    time.strftime("%d:%H:%M:%S", time.gmtime(elapsed_time)))
+                    time.strftime("%H:%M:%S", time.gmtime(elapsed_time)))
 
             sampled_maps = np.array([data_point['sampled_map'] for data_point in data])
             target_maps = np.array([data_point['target_map'] for data_point in data])
@@ -130,7 +136,7 @@ class DatasetGenerator():
         If self.buildings=True, then self.generator is InsiteMapGenerator. If False, then self.generator is self.GudmundsonMapGenerator.
         '''
         # Create output directory with timestamp
-        output_dir = f'dataset/train_{self.time}'
+        output_dir = os.path.join(self.output_dir, self.time, 'train')
         file_name = 'train_batch_'
         os.makedirs(output_dir)
 
@@ -144,6 +150,7 @@ class DatasetGenerator():
                 filter_map=True,
                 filter_size=3,
                 inter_grid_points_dist_factor=1,
+                input_dir=self.input_dir,
                 # args and kwargs for MapGenerator class
                 x_length=100,
                 y_length=100,
@@ -184,7 +191,8 @@ class DatasetGenerator():
         This function sets self.generator and self.sampler to test modes, then calls generate_n_maps.
         '''
         # Create output directory with timestamp
-        output_dir = f'dataset/test_{self.time}'
+        output_dir = os.path.join(self.output_dir, self.time, 'test')
+        print(output_dir)
         os.makedirs(output_dir)
         
         # Initialize Testing Generator
@@ -197,6 +205,7 @@ class DatasetGenerator():
                 filter_map=True,
                 filter_size=3,
                 inter_grid_points_dist_factor=1,
+                input_dir=self.input_dir,
                 # args and kwargs for MapGenerator class
                 x_length=100,
                 y_length=100,
@@ -231,7 +240,7 @@ class DatasetGenerator():
         n_maps = int(self.num_maps * self.test_split / len(sampling_rate))
         for rate in range(len(sampling_rate)):
             self.sampler = MapSampler(v_sampling_factor=sampling_rate[rate])  # set self.sampler at current sampling rate
-            file_name = f'test_{sampling_rate[rate]:.2f}%_batch_'
+            file_name = f'test_{sampling_rate[rate]*100:.0f}%_batch_'
             self.generate_n_maps(n_maps, output_dir, file_name)
 
 
@@ -276,7 +285,9 @@ if __name__ == '__main__':
         buildings=args.buildings,
         batch_size=args.batch_size,
         test_split=args.test_split,
-        num_cpus=args.num_cpus)
+        num_cpus=args.num_cpus,
+        input_dir=args.input_dir,
+        output_dir=args.output_dir)
 
     print(f'dataset_{dataset_generator.time}\n')
     print(args, '\n')

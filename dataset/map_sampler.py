@@ -43,7 +43,7 @@ class MapSampler:
         if np.size(self.v_sampling_factor) == 1:
             sampling_factor = self.v_sampling_factor
         elif np.size(self.v_sampling_factor) == 2:
-            sampling_factor = np.round_((self.v_sampling_factor[1] - self.v_sampling_factor[0]) * np.random.rand() +
+            sampling_factor = np.round((self.v_sampling_factor[1] - self.v_sampling_factor[0]) * np.random.rand() +
                                         self.v_sampling_factor[0], decimals=2)
         else:
             Exception("invalid value of v_sampling_factor")
