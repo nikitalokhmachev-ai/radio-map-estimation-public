@@ -24,12 +24,13 @@ pip install -r respository/requirements.txt
 ```
 Where `radio_map_estimation` and `respository` stand in for the full paths to where you want to save the new virtual environment and where you saved the cloned repository respectively.
 
-3. Download the train, validation, and test datasets from the linked Google accounts. The downloaded files are tarred and zipped and take about 2 GB, 208 MB, and 215 MB respectively. Their unzipped contents are about 7.36 GB, 819 MB, and 819 MB respectively.
+3. Download the train, validation, and test datasets from the links <b>(To Do)</b>. The downloaded files are tarred and zipped and take about 2 GB, 208 MB, and 215 MB respectively. Their unzipped contents are about 7.36 GB, 819 MB, and 819 MB respectively.
 
-3. In order to train a model, run the <b>ARL_Training_Example.ipynb</b> notebook. Specify what model you would like to train in the imports and model definition.
+3. To train a model, run <b>Train_Model.ipynb</b> in <b>notebooks</b> and follow instructions there.
 
-3. After training, execute the <b>Generate Predictions Based on Binned Data.ipynb</b> notebook. Before execution, specify the path to the model.
-4. In order to visualize results, run the <b>Visualize Results.ipynb</b> notebook.
+3. After training, run <b>Evaluate_Model.ipynb</b> in <b>notebooks</b>. Before execution, specify the path to the model. <b>(To Do)</b>
+
+4. To visualize the results, run <b>Visualize Results.ipynb</b> in <b>notebooks</b>. <b>(To Do)</b>
 
 The paths in every notebook have to be changed according to your file structure.
 
