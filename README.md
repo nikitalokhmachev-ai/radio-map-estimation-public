@@ -28,9 +28,9 @@ Where `radio_map_estimation` and `respository` stand in for the full paths to wh
 
 3. To train a model, run <b>Train_Model.ipynb</b> in <b>notebooks</b> and follow instructions there.
 
-3. After training, run <b>Evaluate_Model.ipynb</b> in <b>notebooks</b>. Before execution, specify the path to the model. <b>(To Do)</b>
+3. After training, run <b>Evaluate_Model.ipynb</b> in <b>notebooks</b>. Before execution, specify the path to the model.
 
-4. To visualize the results, run <b>Visualize Results.ipynb</b> in <b>notebooks</b>. <b>(To Do)</b>
+4. To visualize the results, run <b>Visualize Results.ipynb</b> in <b>notebooks</b>.
 
 The paths in every notebook have to be changed according to your file structure.
 
