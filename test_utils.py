@@ -57,13 +57,13 @@ def get_sample_error(results_folder, filename, model_name = None):
   return df
 
 
-def visualize_sample_error(results_folder, width=800, height=700, text_size=18, model_names=None, line_styles=None, marker_size=10, consistent_colors=None, y_range=None, x_range=None):
+def visualize_sample_error(results_folder, width=800, height=700, text_size=18, display_names=None, line_styles=None, marker_size=10, consistent_colors=None, y_range=None, x_range=None):
   filenames = glob.glob(os.path.join(results_folder, '*.pickle'))
   dfs = [get_sample_error(results_folder, filename) for filename in filenames]
   dfs = pd.concat(dfs)
   dfs = dfs.drop_duplicates(['Model', 'Percentages'])
-  if model_names:
-    dfs = dfs.replace({'Model': model_names})
+  if display_names:
+    dfs = dfs.replace({'Model': display_names})
   if consistent_colors:
     dfs['Colors'] = dfs['Model'].copy()
     dfs.replace({'Colors': consistent_colors})
@@ -109,11 +109,12 @@ def get_average_error(results_folder):
   return avg_dfs
 
 
-def visualize_average_error(avg_dfs, model_names=None, category_orders={}, width=550, height=500, text_size=19, y_range=None):
-  show_dfs = avg_dfs[avg_dfs['Model']!='Baseline']
-  if model_names:
-    show_dfs = show_dfs.replace({'Model': model_names})
-  baseline = avg_dfs.loc[avg_dfs['Model']=='Baseline', 'Avg Error'].item()
+def visualize_average_error(avg_dfs, display_names=None, baseline_name='Baseline', category_orders={},
+                             width=550, height=500, text_size=19, y_range=None):
+  show_dfs = avg_dfs[avg_dfs['Model']!=baseline_name]
+  if display_names:
+    show_dfs = show_dfs.replace({'Model': display_names})
+  baseline = avg_dfs.loc[avg_dfs['Model']==baseline_name, 'Avg Error'].item()
   fig = px.bar(show_dfs, x='Model', y='Avg Error', width=width, height=height, category_orders=category_orders)
   fig.update_layout(shapes=[go.layout.Shape(type='rect', xref='paper', yref='paper', x0=0, y0=0, x1=1, y1=1, line={'width': 1, 'color': 'black', 'dash':'solid'})])
   fig.update_xaxes(
@@ -135,13 +136,14 @@ def visualize_average_error(avg_dfs, model_names=None, category_orders={}, width
   return fig
 
 
-def visualize_hist(results_folder, model_names=None, text_size=19, width=800, height=700, y_range=None):
+def visualize_hist(results_folder, display_names=None, baseline_name='Baseline',
+                   text_size=19, width=800, height=700, y_range=None):
   filenames = glob.glob(os.path.join(results_folder, '*.pickle'))
   df_percentage = []
   for filename in filenames:
     df = get_sample_error(results_folder, filename, model_name = None)
     model_name = df['model'].iloc[0]
-    if model_name == 'Baseline':
+    if model_name == baseline_name:
       continue
     bin_splits = np.arange(0.1, 0.5, 0.1)
     less_ten, ten_twenty = df.query('Percentages <= 0.1')['Error'].pow(2).mean()**0.5, df.query('0.1 < Percentages <= 0.2')['Error'].pow(2).mean()**0.5
@@ -153,8 +155,8 @@ def visualize_hist(results_folder, model_names=None, text_size=19, width=800, he
 
   df_percentage = pd.concat(df_percentage)
   df_percentage = df_percentage.drop_duplicates()
-  if model_names:
-    df_percentage = df_percentage.replace({'Model Name': model_names})
+  if display_names:
+    df_percentage = df_percentage.replace({'Model Name': display_names})
 
   order = {'Category':['1%-10%', '11%-20%', '21%-30%', '31%-40%']}
   df_top_percent = df_percentage[df_percentage['Category'] == '31%-40%']
