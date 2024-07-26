@@ -142,7 +142,7 @@ def visualize_hist(results_folder, display_names=None, baseline_name='Baseline',
   df_percentage = []
   for filename in filenames:
     df = get_sample_error(results_folder, filename, model_name = None)
-    model_name = df['model'].iloc[0]
+    model_name = df['Model'].iloc[0]
     if model_name == baseline_name:
       continue
     bin_splits = np.arange(0.1, 0.5, 0.1)
