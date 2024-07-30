@@ -5,7 +5,7 @@ joblib==1.2.0
 plotly==5.15.0
 matplotlib==3.7.1
 scipy==1.11.3
-scikit-learn==1.2.2
+scikit-learn==1.0.2
 pandas==1.5.3
 opencv-python==4.8.0.76
 ipykernel==5.5.6
