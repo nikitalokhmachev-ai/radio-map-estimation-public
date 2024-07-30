@@ -1,6 +1,6 @@
 # Radio Map Estimation
 
-This repository is the official implementation of all the models mentioned in the Radio Map Estimation with Deep Dual Path Autoencoders and Skip Connection Learning paper.
+This repository is the official implementation of all the models mentioned in the paper [Radio Map Estimation with Deep Dual Path Autoencoders and Skip Connection Learning](https://ieeexplore.ieee.org/document/10293748), published and presented at the 2023 IEEE PIMRC Conference.
 
 ## Project File Structure
 
@@ -30,14 +30,25 @@ Where `radio_map_estimation` and `respository` stand in for the full paths to wh
 
 3. After training, run <b>Evaluate_Model.ipynb</b> in <b>notebooks</b>. Before execution, specify the path to the model.
 
-4. To visualize the results, run <b>Visualize Results.ipynb</b> in <b>notebooks</b>.
+4. To visualize the results, run <b>Visualize_Results.ipynb</b> in <b>notebooks</b>.
+
+5. Optionally, to visualize model inputs and outputs, run <b>Visualize_Inputs_Outputs.ipynb</b> in <b>notebooks</b>
 
 The paths in every notebook have to be changed according to your file structure.
 
 ## References
 
-The code to generate the dataset as well as the dataset itself have been taken from [deep-autoencoders-cartography](https://github.com/fachu000/deep-autoencoders-cartography).
+Code used to generate the dataset, as well as the the underlying data itself, were copied and adapted from "Deep Completion Autoencoders for Radio Map Estimation" by Yves Teganya and Daniel Romero. Copied python files feature the following copyright / citation at the top of the file:
 
-## Warning
+```
+#  Copyright (c) Yves Teganya and Daniel Romero
+#  
+#  Y. Teganya and D. Romero, ‘Deep Completion Autoencoders for Radio Map Estimation’, 
+#  arXiv preprint arXiv:2005. 05964, 2020.
+#  
+#  Source code: https://github.com/fachu000/deep-autoencoders-cartography
+```
+
+## Reproducibility Disclaimer
 
 Due to the stochastic nature of the data generation process as well as the difference in GPU architectures, your results might vary slightly.
