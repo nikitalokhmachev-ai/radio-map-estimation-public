@@ -1,9 +1,14 @@
-# This script is copied from the repository fachu000/deep-autoencoders-cartography
-# https://github.com/fachu000/deep-autoencoders-cartography
-
-# Import paths were changed according to the current repository structure.
-# We also made changes at lines 77-78, 90, 95, and 175-177 to ensure the code ran without errors.
-# We have noted these changes in the comments immediately above those lines. 
+#  Copyright (c) Yves Teganya and Daniel Romero
+# 
+#  Y. Teganya and D. Romero, ‘Deep Completion Autoencoders for Radio Map Estimation’, 
+#  arXiv preprint arXiv:2005. 05964, 2020.
+#
+#  Source code: https://github.com/fachu000/deep-autoencoders-cartography
+#
+#  Adapted by William Locke and Nikita Lokhmachev
+#  Import paths were changed according to the current repository structure.
+#  We also made changes at lines 77-78, 90, 95, and 175-177 to ensure the code ran without errors.
+#  We have noted these changes in the comments immediately above those lines. 
 
 import numpy as np
 from numpy import linalg as npla

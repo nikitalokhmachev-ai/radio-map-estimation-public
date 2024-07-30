@@ -1,7 +1,13 @@
-# This script is copied from the repository fachu000/deep-autoencoders-cartography
-# https://github.com/fachu000/deep-autoencoders-cartography
-
-# Import paths and file paths were changed according to the current repository structure, but all other code and comments are unchanged.
+#  Copyright (c) Yves Teganya and Daniel Romero
+# 
+#  Y. Teganya and D. Romero, ‘Deep Completion Autoencoders for Radio Map Estimation’, 
+#  arXiv preprint arXiv:2005. 05964, 2020.
+#
+#  Source code: https://github.com/fachu000/deep-autoencoders-cartography
+#
+#  Adapted by William Locke and Nikita Lokhmachev
+#  Import paths and file paths were changed according to the current repository structure, 
+#  but all other code and comments are unchanged.
 
 from map_generator import MapGenerator
 from communications import dbm_to_natural, natural_to_dbm, dbm_to_db, db_to_natural

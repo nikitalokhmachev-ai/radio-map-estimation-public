@@ -1,5 +1,9 @@
-# This script is copied from the repository fachu000/deep-autoencoders-cartography
-# https://github.com/fachu000/deep-autoencoders-cartography
+#  Copyright (c) Yves Teganya and Daniel Romero
+# 
+#  Y. Teganya and D. Romero, ‘Deep Completion Autoencoders for Radio Map Estimation’, 
+#  arXiv preprint arXiv:2005. 05964, 2020.
+#
+#  Source code: https://github.com/fachu000/deep-autoencoders-cartography
 
 import numpy as np
 
