@@ -16,7 +16,7 @@ In order to reproduce the paper results, follow the following procedure:
 
 1. Clone the current repository.
 
-2. Make sure you have all the dependencies listed in requirements.txt. A simple way to do this is to create a virtual environment, e.g. using venv (https://docs.python.org/3/library/venv.html), and download the required dependencies there:
+2. Make sure you have all the dependencies listed in requirements.txt. A simple way to do this is to create a virtual environment, e.g. using [venv](https://docs.python.org/3/library/venv.html), and download the required dependencies there:
 ```
 python -m venv radio_map_estimation
 source radio_map_estimation/bin/activate
