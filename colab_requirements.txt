@@ -1,0 +1,12 @@
+torch
+torchvision
+wandb
+joblib
+plotly
+matplotlib
+scipy
+scikit-learn
+pandas
+opencv-python
+ipykernel
+kaleido
