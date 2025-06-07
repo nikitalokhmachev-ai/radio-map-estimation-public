@@ -20,9 +20,9 @@ In order to reproduce the paper results, follow the following procedure:
 ```
 python -m venv radio_map_estimation
 source radio_map_estimation/bin/activate
-pip install -r respository/requirements.txt
+pip install -r repository/requirements.txt
 ```
-Where `radio_map_estimation` and `respository` stand in for the full paths to where you want to save the new virtual environment and where you saved the cloned repository respectively.
+Where `radio_map_estimation` and `repository` stand in for the full paths to where you want to save the new virtual environment and where you saved the cloned repository respectively.
 
 3. Download the [Train](https://drive.google.com/file/d/1-z1gWOLLjD9O0K0whbCA7DsUJt64x6iq/view?usp=sharing), [Validation](https://drive.google.com/file/d/1-ONtHgLgNkI-kPAkdsta0DVkPfjS73js/view?usp=sharing), and [Test](https://drive.google.com/file/d/1KjCLM6DFGDwiIk_DIr005NsEeTbgRoXn/view?usp=sharing) datasets. The downloaded files are tarred and zipped and take about 2 GB, 208 MB, and 215 MB respectively. Their unzipped contents are about 7.36 GB, 819 MB, and 819 MB respectively.
 
